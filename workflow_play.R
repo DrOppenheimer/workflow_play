@@ -15,18 +15,10 @@ source("~/Documents/GitHub/Kevin_R_scripts/export_data.r")
 export_data(metadata_subset, "filtered_counts.metadata.txt")
 ##################################################################
 
-
 # Start here --------------------------------------------------------------
-
 
 # set the working directory
 setwd("~/Documents/GitHub/workflow_play")
-
-## Load some sample data to play with
-#source("~/Documents/GitHub/Kevin_R_scripts/import_data.r")
-#my_data <- import_data("filtered_counts.txt")
-#my_metadata <- import_data("filtered_counts.metadata.txt")
-
 
 # Preprocess the data
 source("preprocessing_tool.r")

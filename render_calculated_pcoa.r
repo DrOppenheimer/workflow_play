@@ -160,6 +160,9 @@ plot_interactive_colored_3d_pcoa <- function(
     pcoa_metadata_file = "metadata.txt",
     metadata_column = 1
 ){
+  # create title for the plot
+  my_title <- paste("3d pcoa colored by", metadata_column)
+  
   #import PCoA data file here
   pcoa_data <- load_pcoa_data(pcoa_data_file)
   
@@ -181,7 +184,7 @@ plot_interactive_colored_3d_pcoa <- function(
     marker = list(color = metadata_colors[,1])) %>%
     
     layout(
-      title = "Interactive 3D Scatter Plot", 
+      title = my_title, 
       scene = list(
         xaxis = list(title = paste("xPC_",
                                    selected_eigen_vectors[1],
