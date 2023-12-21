@@ -1,0 +1,27 @@
+##############################################################
+###################### INPUT PARAMETERS ######################
+data_in:               filtered_counts.txt
+data_type:             file
+output_object:         filtered_counts.txt.standardize.PREPROCESSED
+output_file:           filtered_counts.txt.standardize.PREPROCESSED.txt
+removeSg:              TRUEremoveSg_valueMin:     2
+removeSg_rowMin:       4
+log_transform          FALSE
+norm_method:           standardize
+DESeq_metadata_table:  NA
+DESeq_metadata_column: 1
+DESeq_metadata_type:   file
+DESeq_sharingMode:     maximum
+DESeq_fitType:         local
+scale_0_to_1:          TRUE
+produce_boxplots:      TRUE
+boxplot_height_in:     8.5
+boxplot_width_in:      11
+debug as.character:    TRUE
+####################### OUTPUT SUMMARY #######################
+output object:         filtered_counts.txt.standardize.PREPROCESSED
+otuput file:           filtered_counts.txt.standardize.PREPROCESSED.txt
+output boxplot:        filtered_counts.txt.boxplots.png
+
+DESeq regression:      NA
+##############################################################
