@@ -66,9 +66,16 @@ sigtest(data_file="filtered_counts.txt",
 # Load the stat test results and subselect data based on the stat results
 library(tidyverse)
 my_stat_results <- import_data("filtered_counts.ANOVA-one-way.env_package.data.body_site.STAT_RESULTS.txt")
-my_stat_results <- as_tibble(my_stat_results)
-my_stat_results_subselected <- my_stat_results |> filter( bonferroni_p < 0.001 ) # woot, I used a pipe
+my_stat_results <- as_tibble(my_stat_results,rownames=NA)
+my_stat_results_subselected <- my_stat_results |> filter( bonferroni_p < 0.0001 ) # woot, I used a pipe
+# export results with stats
 export_data(data_object = my_stat_results_subselected, file_name = "my_stat_results_subselected.txt")
+# remove the columns that contain the stats(this is hacky)
+source("remove_last_n_columns.R")
+my_stat_results_subselected_and_cleaned <- remove_last_n_columns(my_stat_results_subselected, n=7)
+# export the data ready to create a HD
+export_data(data_object = my_stat_results_subselected_and_cleaned, file_name = "my_stat_results_subselected_and_cleaned.txt")
+
 
 # create heatmap dendrograms of original and stat subselected data
 source("heatmap_dendrogram.r")
@@ -77,11 +84,11 @@ heatmap_dendrogram(file_in = "filtered_counts.txt", # should really be using nor
                    metadata_column="env_package.data.body_site"
   )
 system("open filtered_counts.txt.HD.png")
-heatmap_dendrogram(file_in = "my_stat_results_subselected.txt",
+heatmap_dendrogram(file_in = "my_stat_results_subselected_and_cleaned.txt",
                    metadata_table = "filtered_counts.metadata.txt",
                    metadata_column="env_package.data.body_site"
 )
-system("open my_stat_results_subselected.txt.HD.png")
+system("open my_stat_results_subselected_and_cleaned.txt.HD.png")
 
 
 
