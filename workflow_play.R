@@ -20,7 +20,7 @@ export_data(metadata_subset, "filtered_counts.metadata.txt")
 
 
 # set the working directory
-setwd("/Users/kevinkeegan/Documents/GitHub/workflow_play")
+setwd("~/Documents/GitHub/workflow_play")
 
 ## Load some sample data to play with
 #source("~/Documents/GitHub/Kevin_R_scripts/import_data.r")
@@ -29,15 +29,15 @@ setwd("/Users/kevinkeegan/Documents/GitHub/workflow_play")
 
 
 # Preprocess the data
-source("~/Documents/GitHub/PCA_tools_for_R/preprocessing_tool.r")
+source("preprocessing_tool.r")
 preprocessing_tool("filtered_counts.txt")
 
 # calculate PCoA on the preprocessed data
-source("~/Documents/GitHub/PCA_tools_for_R/calculate_pco.r")
+source("calculate_pco.r")
 calculate_pco(file_in="filtered_counts.txt.standardize.PREPROCESSED.txt")
 
 # render interactive 3d PCoA plot from the PCoA and the corresponding metadata
-source("~/Documents/GitHub/PCA_tools_for_R/render_calculated_pcoa.r")
+source("render_calculated_pcoa.r")
 plot_interactive_colored_3d_pcoa(
   pcoa_data_file = "filtered_counts.txt.standardize.PREPROCESSED.txt.euclidean.PCoA", #my_test_pcoa,
   selected_eigen_vectors = c(1,2,3),
@@ -55,7 +55,7 @@ plot_static_colored_3d_pcoas(
 system("open filtered_counts.txt.standardize.PREPROCESSED.txt.euclidean.PCoA.*.png")
 
 # perform a stat test on the data/metadata (selected metadata column is used to create groups for chosen stat test)
-source("~/Documents/GitHub/PCA_tools_for_R/sigtest.R")
+source("sigtest.R")
 sigtest(data_file="filtered_counts.txt", 
                     metadata_file="filtered_counts.metadata.txt",  
                     metadata_column="env_package.data.body_site", 
@@ -71,7 +71,7 @@ my_stat_results_subselected <- my_stat_results |> filter( bonferroni_p < 0.001 )
 export_data(data_object = my_stat_results_subselected, file_name = "my_stat_results_subselected.txt")
 
 # create heatmap dendrograms of original and stat subselected data
-source("~/Documents/GitHub/PCA_tools_for_R/heatmap_dendrogram.r")
+source("heatmap_dendrogram.r")
 heatmap_dendrogram(file_in = "filtered_counts.txt", # should really be using normalized data here
                    metadata_table = "filtered_counts.metadata.txt",
                    metadata_column="env_package.data.body_site"
