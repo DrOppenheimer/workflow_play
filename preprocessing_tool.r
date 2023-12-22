@@ -7,7 +7,7 @@ preprocessing_tool <- function(
                                   removeSg_valueMin     = 2, # lowest retained value (lower converted to 0)
                                   removeSg_rowMin       = 4, # lowest retained row sum (lower, row is removed)
                                   log_transform         = FALSE,
-                                  norm_method           = "standardize", #c("standardize", "quantile", "DESeq_blind", "DESeq_per_condition", "DESeq_pooled", "DESeq_pooled_CR", "none"), # USE blind if not replicates -- use pooled to get DESeq default
+                                  norm_method           = "quantile", #c("standardize", "quantile", "DESeq_blind", "DESeq_per_condition", "DESeq_pooled", "DESeq_pooled_CR", "none"), # USE blind if not replicates -- use pooled to get DESeq default
                                   pseudo_count          = 1, # has to be integer for DESeq
                                   DESeq_metadata_table  = NA, # only used if method is other than "blind"
                                   DESeq_metadata_column = 1, # only used if method is other than "blind"

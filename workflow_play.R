@@ -1,3 +1,7 @@
+# for norm with quantiles
+BiocManager::install("preprocessCore")
+library(preprocessCore)
+
 
 # get the metadata subset that corresponds to the small HMP sample
 # did this just once - not meant for repeating
@@ -22,7 +26,7 @@ setwd("~/Documents/GitHub/workflow_play")
 
 # Preprocess the data
 source("preprocessing_tool.r")
-preprocessing_tool("filtered_counts.txt")
+preprocessing_tool("filtered_counts.txt", )
 
 # calculate PCoA on the preprocessed data
 source("calculate_pco.r")
