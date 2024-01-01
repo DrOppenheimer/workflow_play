@@ -1,3 +1,7 @@
+# set the working directory
+setwd("~/Documents/GitHub/workflow_play")
+
+
 # Install BioConductor
 if (!requireNamespace("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
@@ -74,7 +78,86 @@ dev.off()
 
 
 
+# try it again with violin plots
+# Loading the required library
+library(tidyr)
+
+# Using pivot_longer to collapse multiple columns into two
+collapsed_data <- pivot_longer(data, cols = -ID, names_to = "Variable", values_to = "Value")
+
+# reshape data to make it ready to become "tidy"
+normalized_counts <- as.data.frame(normalized_counts)
+old_matrix <- normalized_counts
+new_column <- rownames(normalized_counts)
+new_matrix <- cbind(new_column,old_matrix)
+new_matrix <- as.data.frame(new_matrix)
+# make data "tidy". by pivoting 
+collapsed_normalized_counts <- pivot_longer(new_matrix, col=-new_column, names_to = "Sample_id", values_to = "Values" )
+
+# Creating a violin plot
+ggplot(collapsed_normalized_counts, aes(x = Sample_id, y = Values)) +
+  geom_violin() +
+  scale_fill_brewer(palette = "Set3") +
+  theme_minimal() +
+  labs(
+    title = "Violin Plot Example",
+    x = "Group",
+    y = "Value"
+  )
+
+# Creating a boxplot
+ggplot(collapsed_normalized_counts, aes(x = Sample_id, y = Values)) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(
+    title = "Violin Plot Example",
+    x = "Group",
+    y = "Value"
+  )
 
 
+
+
+
+
+
+
+
+
+
+# simple violin plot example
+# Generating sample data
+set.seed(42)
+group1 <- rnorm(100, mean = 0, sd = 1)
+group2 <- rnorm(100, mean = 1, sd = 1)
+group3 <- rnorm(100, mean = 2, sd = 1)
+
+# Creating a data frame
+data <- data.frame(
+  group = rep(c("Group 1", "Group 2", "Group 3"), each = 100),
+  value = c(group1, group2, group3)
+)
+
+# Loading ggplot2 library
+library(ggplot2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+screen(2)
+#graphics::boxplot(normalized_counts,las=2, cex.axis=0.5)
+
+
+dev.off()
 
 
