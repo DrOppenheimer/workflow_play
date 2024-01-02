@@ -172,6 +172,9 @@ ggplot(
 library(plotly)
 library(scatterplot3d)
 
+
+# FUNCTIONS TO GENERATE COLOR FROM METADATA -------------------------------
+
 # Functions to create colors from metadata
 ## ######################
 ## # SUB(3): FUNCTION TO GENERATE COLORS FOR THE PLOT 
