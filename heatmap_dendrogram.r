@@ -1,4 +1,4 @@
-# Majority of this code is adapted from heatmap.2{gplots}
+# Majority of this code is adapted from heatmap.2::gplots
 
 heatmap_dendrogram <- function (
 
@@ -31,8 +31,8 @@ heatmap_dendrogram <- function (
                                           labRow = NA,                          # Kevin 1-27-10 - Dendrogram row labels (NULL for default; NA to remove)
                                           labCol = NA,                          # Kevin 1-27-10 - Dendrogram column labels (NULL for default; NA to remove)
                                           # par (las=2 (labels perp to axis)
-                                          hclustfun_method = "ward",            # clustering method: from hclust{stats}, default is "complete"
-                                                                                # hclustfun_method = c("ward", "single", "complete", "average", "mcquitty", "median" or "centroid")
+                                          hclustfun_method = "ward.D",            # clustering method: from hclust{stats}, default is "complete"
+                                                                                # hclustfun_method = c("ward.D", "single", "complete", "average", "mcquitty", "median" or "centroid")
                                  
                                        # figure output parameters (units vary depending on selected figure_type (bleow)
                                           figure_width  = 22,                   # usually pixels, inches if eps is selected; png is default
@@ -176,10 +176,10 @@ load_metadata <- function(metadata_table, metadata_column){
   # metadata_matrix <- metadata_matrix[order(rownames(metadata_matrix)),]
   color_matrix <- create_colors(metadata_matrix, color_mode = "auto")
   ncol.color_matrix <- ncol(color_matrix)
-  
   metadata_factors <- as.factor(metadata_matrix[,metadata_column])
   metadata_levels <- levels(as.factor(metadata_matrix[,metadata_column]))
   num_levels <- length(metadata_levels)
+  color_matrix <<- color_matrix
   color_levels <- col.wheel(num_levels)
   all_colors <- color_matrix[,metadata_column]
 

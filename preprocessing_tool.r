@@ -6,7 +6,7 @@ preprocessing_tool <- function(
                                   removeSg              = TRUE, # boolean to remove singleton counts
                                   removeSg_valueMin     = 2, # lowest retained value (lower converted to 0)
                                   removeSg_rowMin       = 4, # lowest retained row sum (lower, row is removed)
-                                  log_transform         = FALSE,
+                                  log_transform         = TRUE,
                                   norm_method           = "quantile", #c("standardize", "quantile", "DESeq_blind", "DESeq_per_condition", "DESeq_pooled", "DESeq_pooled_CR", "none"), # USE blind if not replicates -- use pooled to get DESeq default
                                   pseudo_count          = 1, # has to be integer for DESeq
                                   DESeq_metadata_table  = NA, # only used if method is other than "blind"
@@ -17,7 +17,7 @@ preprocessing_tool <- function(
                                   DESeq_fitType         = "local",          # c( "parametric", "local" )
                                   DESeq_image           = TRUE, # create dispersion vs mean plot indicate DESeq regression
                                   scale_0_to_1          = TRUE,
-                                  produce_boxplots      = TRUE,
+                                  produce_boxplots      = FALSE,
                                   boxplots_file_out     = "default",
                                   boxplot_height_in     = "default", # 11,
                                   boxplot_width_in      = "default", #"8.5,
@@ -57,9 +57,9 @@ preprocessing_tool <- function(
     #####if ( is.element("DESeq", installed.packages()[,1]) == FALSE ){ biocLite("DESeq") }
     # (DESeq): www.ncbi.nlm.nih.gov/pubmed/20979621
 
-    #library(preprocessCore)
+    library(preprocessCore)
     #library(DESeq)
-    #library(RColorBrewer)
+    library(RColorBrewer)
 
     ###### MAIN
     
@@ -104,7 +104,7 @@ preprocessing_tool <- function(
       input_data <- remove.singletons(x=input_data, lim.entry=removeSg_valueMin, lim.row=removeSg_rowMin, debug=debug)
     }
     
-    # log transform log(x+1)2
+    # log transform log(x+1)10
     if ( log_transform==TRUE ){
       input_data <- log_data(input_data, pseudo_count)
     }
@@ -348,10 +348,10 @@ remove.singletons <- function (x, lim.entry, lim.row, debug) {
 # data[rowSums(is.na(data)) != ncol(data),] # remove rows with any NAs
 
 ######################################################################
-### Sub to log transform (base two of x+1)
+### Sub to log transform (base ten of x+1)
 ######################################################################
 log_data <- function(x, pseudo_count){
-  x <- log2(x + pseudo_count)
+  x <- log10(x + pseudo_count)
   x
 }
 ######################################################################

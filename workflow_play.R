@@ -1,3 +1,6 @@
+
+setwd("~/Documents/GitHub/workflow_play/")
+
 # for norm with quantiles
 BiocManager::install("preprocessCore")
 library(preprocessCore)
@@ -56,7 +59,7 @@ sigtest(data_file="filtered_counts.txt",
                     metadata_file="filtered_counts.metadata.txt",  
                     metadata_column="env_package.data.body_site", 
                     stat_test="ANOVA-one-way",
-                    p_adjust_method = "BH"
+                    p_adjust_method = "fdr"
   )
 
 # Load the stat test results and subselect data based on the stat results
