@@ -6,9 +6,9 @@ preprocessing_tool <- function(
                                   removeSg              = TRUE, # boolean to remove singleton counts
                                   removeSg_valueMin     = 2, # lowest retained value (lower converted to 0)
                                   removeSg_rowMin       = 4, # lowest retained row sum (lower, row is removed)
-                                  log_transform         = TRUE,
+                                  log_transform         = TRUE, # log10( x + pseudo_count  ) - done after singleton counts are removed
                                   norm_method           = "quantile", #c("standardize", "quantile", "DESeq_blind", "DESeq_per_condition", "DESeq_pooled", "DESeq_pooled_CR", "none"), # USE blind if not replicates -- use pooled to get DESeq default
-                                  pseudo_count          = 1, # has to be integer for DESeq
+                                  pseudo_count          = 0, # has to be integer for DESeq
                                   DESeq_metadata_table  = NA, # only used if method is other than "blind"
                                   DESeq_metadata_column = 1, # only used if method is other than "blind"
                                   DESeq_metadata_type   = "file",           # c( "file", "r_matrix" )
@@ -23,7 +23,7 @@ preprocessing_tool <- function(
                                   boxplot_width_in      = "default", #"8.5,
                                   boxplot_res_dpi       = 300,
                                   create_log            = TRUE,
-                                  debug                 = TRUE                                  
+                                  debug                 = FALSE                                  
                                   )
 
   {
