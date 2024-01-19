@@ -9,9 +9,6 @@ import_metadata <- function(group_table){ #, group_column, sample_names){
         )
     )
     
-    #metadata_matrix <- metadata_matrix[ order(sample_names),,drop=FALSE ]
-    #group_names <- metadata_matrix[ order(sample_names), group_column,drop=FALSE ]
-    #return(group_names)
 }
 
 

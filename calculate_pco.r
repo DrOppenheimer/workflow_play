@@ -38,7 +38,7 @@ calculate_pco <- function(
                             output_PCoA_dir = \"./\"                                 # (string)  directory(path) for output PCoA file
                             print_dist = 0                                         # (boolean) print the DIST file (distance matrix)
                             output_DIST_dir = \"./\"                                 # (string)  directory(path) for output DIST file 
-                            dist_method = \"bray-curtis\"                            # (string)  distance/dissimilarity metric,
+                            dist_method = \"euclidean\"                            # (string)  distance/dissimilarity metric,
                                           (choose from one of the following options)
                                           \"euclidean\" | \"maximum\"     | \"canberra\"    |
                                           \"binary\"    | \"minkowski\"   | \"bray-curtis\" |
