@@ -13,7 +13,7 @@ preprocessing_tool <- function(
                                   DESeq_metadata_column = NA, # only used if method is other than "blind"
                                   DESeq_metadata_type   = "file",           # c( "file", "r_matrix" )
                                   #DESeq_method          = "blind",  # c( "pooled", "pooled-CR", "per-condition", "blind" ) # blind, treat everything as one group
-                                  DESeq_sharingMode     = NA, # "maximum",  # c( "maximum", "fit-only", "gene-est-only" ) # maximum is the most conservative choice
+                                  DESeq_sharingMode     = "maximum", # "maximum",  # c( "maximum", "fit-only", "gene-est-only" ) # maximum is the most conservative choice
                                   DESeq_fitType         = NA, # "local",          # c( "parametric", "local" )
                                   DESeq_image           = NA, # TRUE, # create dispersion vs mean plot indicate DESeq regression
                                   scale_0_to_1          = TRUE,
