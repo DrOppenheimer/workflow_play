@@ -208,7 +208,7 @@ plot_interactive_colored_3d_pcoa <- function(
         type = "scatter3d", 
         mode = "markers",
         marker = list(color = metadata_colors[i,1], size = 10),  # Custom color
-        name = legend_labels[i]  # Custom legend text
+        name = categories[i]  # Custom legend text
         )
     }
 
