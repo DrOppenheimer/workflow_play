@@ -160,8 +160,6 @@ plot_interactive_colored_3d_pcoa <- function(
     pcoa_metadata_file = "metadata.txt",
     metadata_column = 1
 ){
-  # create title for the plot
-  my_title <- paste("3d pcoa colored by", metadata_column)
   
   #import PCoA data file here
   pcoa_data <- load_pcoa_data(pcoa_data_file)
@@ -174,11 +172,6 @@ plot_interactive_colored_3d_pcoa <- function(
   
   # get metadata column name
   metadata_column_name <- colnames(metadata_column) 
-
-  # generate colors for selected column
-  #metadata_colors <- create_colors(metadata_column)
-  
-
 
   # create a data frame with a category axis that contains the PCoAs and the metadata
   my_df <- cbind(
@@ -201,8 +194,6 @@ plot_interactive_colored_3d_pcoa <- function(
   # Create colors for the plot
   metadata_colors <- create_colors(matrix(categories, ncol = 1))
 
-  test5 <<- metadata_colors  
-
   # Create an empty plot
   fig <- plot_ly()
 
@@ -224,7 +215,7 @@ plot_interactive_colored_3d_pcoa <- function(
   # Customize layout
   fig <- fig %>%
     layout(
-        title = paste("Colored by", metadata_column_name),
+        title = paste("3d PCoA colored by", metadata_column_name),
         scene = list(#xaxis = list(title = colnames(my_df)[2], tickformat = ".2f"),
             xaxis = list(title = colnames(my_df)[2]), 
             yaxis = list(title = colnames(my_df)[3]), 
@@ -236,7 +227,8 @@ plot_interactive_colored_3d_pcoa <- function(
  fig
 
 }
-
+######################
+######################
 
 
 ## ######################
