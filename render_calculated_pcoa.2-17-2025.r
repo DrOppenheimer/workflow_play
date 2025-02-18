@@ -225,14 +225,13 @@ plot_interactive_colored_3d_pcoa <- function(
   fig <- fig %>%
     layout(
         title = paste("Colored by", metadata_column_name),
-        scene = list(
-            #xaxis = list(title = colnames(my_df)[2], tickformat = ".2f"),
+        scene = list(#xaxis = list(title = colnames(my_df)[2], tickformat = ".2f"),
             xaxis = list(title = colnames(my_df)[2]), 
             yaxis = list(title = colnames(my_df)[3]), 
-            zaxis = list(title = colnames(my_df)[4]),
+            zaxis = list(title = colnames(my_df)[4])),
             legend = list(title = list(text = 'Legend'))
         )
-    )
+    
 
  fig
 
